@@ -10,6 +10,13 @@ var listFiles = function(input, args){
   })
 }
 
+
+var echoFunc = function(input, args){
+  var string = args.join(' ');
+  process.stdout.write(string+'\n');
+}
+
+
 module.exports = {
   pwd: function(input, args){
     console.log(process.cwd())
@@ -17,5 +24,6 @@ module.exports = {
   date: function(input, args){
     console.log(new Date(Date.now()))
   },
-  ls: listFiles
+  ls: listFiles,
+  echo: echoFunc
 }

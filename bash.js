@@ -10,12 +10,20 @@ process.stdout.write('prompt >');
 process.stdin.on('data', function(data){
   var cmd = data.toString().trim().split(" ");
   //var cmd = data.toString().trim();
-  var func = cmd[0]
+  //var func = cmd[0];
   
-  commands[cmd]()
+  function spaceDelimited(array) {
+      var current;
+      var func = commands[array[0]];
+      var args = array.slice(1);
+      func(current,args);
+  }
 
-  process.stdout.write('You typed: ' + cmd);
-  process.stdout.write('\nprompt > \n');
+  spaceDelimited(cmd);
+  //commands[func]();
+
+  process.stdout.write('You typed: ' + data);
+  process.stdout.write('\nprompt >');
 
 });
 
