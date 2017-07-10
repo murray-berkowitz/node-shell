@@ -1,4 +1,6 @@
-var fs = require('fs')
+var fs = require('fs');
+var request = require('request');
+
 var listFiles = function(args){
   fs.readdir('.', function(err, files){
     if (err) throw err;
@@ -12,6 +14,20 @@ var listFiles = function(args){
     })
   })
 }
+
+var curl = function(args){
+  var output = "";
+  args.forEach(function(http){
+    request(http, function(err,response,body){
+      if(err){
+        throw err
+      }
+      console.log('statusCode:', response&&response.statusCode);
+      console.log('body:', body);
+    })
+  })
+}
+
 var head = function(files){
   var async_counter = files.length;
   files.forEach(function(file){
